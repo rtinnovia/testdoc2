@@ -17,7 +17,7 @@ env:
     # Name of module and id separated by a slash
     INSTANCE: Writerside/hi
     # Replace HI with the ID of the instance in capital letters
-    ARTIFACT: webHelpHI2-all.zip
+    ARTIFACT: webHelpADOC2-all.zip
     # Writerside docker image version
     DOCKER_VERSION: 232.10165.1
 # Add the variable below to upload Algolia indexes
@@ -72,7 +72,7 @@ jobs:
             - name: Test documentation
               uses: JetBrains/writerside-checker-action@v1
               with:
-                instance: Writerside/hi
+                instance: ${{ env.INSTANCE }}
 
     deploy:
         environment:
@@ -90,7 +90,7 @@ jobs:
             - name: Unzip artifact
               uses: montudor/action-zip@v1
               with:
-                args: unzip -qq OC -d dir
+                args: unzip -qq ${{ env.ARTIFACT }} -d dir
 
             - name: Setup Pages
               uses: actions/configure-pages@v2
